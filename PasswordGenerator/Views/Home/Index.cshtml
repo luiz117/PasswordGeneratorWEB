@@ -1,0 +1,31 @@
+﻿@model PasswordGen
+
+<script>
+
+    function copy() {
+        var copyPass = $("#Password").val();
+        console.log("Vale: " + copyPass);
+        navigator.clipboard.writeText(copyPass);
+    }
+
+</script>
+
+
+@using (Html.BeginForm("Generate", "Home", FormMethod.Post))
+{
+    <div class="form-control">
+        <div class="col-sm-8">
+
+            @Html.LabelFor(x=>x.Size)<br>
+            @Html.EditorFor(m=>m.Size, new { htmlAttributes = new { Value = "7",  min = "7", max = "25" }}) <br /><br />
+
+            @Html.LabelFor(x=>x.Password) <br>
+            @Html.EditorFor(m=>m.Password,  new { htmlAttributes = new { @class = "form-control", @disabled = "disabled"}})
+            <br />
+            <br />
+            <input type="submit" value="Generate" onclick="" class="btn-success" />
+            <input type="button" value="Copy" onclick="copy()" class="btn-success" />
+
+        </div>
+    </div>
+}
